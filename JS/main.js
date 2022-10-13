@@ -8,6 +8,7 @@ let CurrentCity = '';
         document.querySelector('.loading').classList.add('clear-loading');
     }
 })('sohag');
+
 // Add shadow in search group div on Focus
 input_search.addEventListener('focus', e => {
     // Delete is-invalid class From Input Group
@@ -135,7 +136,7 @@ async function checkCity(city) {
     // get if there city With Thats chars 
     //      if not found return []
     //          else return Not Empty Array
-    let res = await fetch(`http://api.weatherapi.com/v1/search.json?key=8a148a00e2f14425af8202503221010&q=${city}`);
+    let res = await fetch(`https://api.weatherapi.com/v1/search.json?key=8a148a00e2f14425af8202503221010&q=${city}`);
     return await res.json();
 }
 // 
