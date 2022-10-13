@@ -1,0 +1,230 @@
+body {
+    font-family: "Merriweather Sans", sans-serif;
+}
+:root {
+    --main-transition: 0.3s;
+}
+body::-webkit-scrollbar {
+    width: 0rem;
+    border-radius: 1rem;
+    background-color: var(--bs-gray-300);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--bs-dark);
+    border-radius: 1rem;
+}
+a {
+    text-decoration: none;
+}
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+::selection {
+    background-color: var(--bs-primary);
+    color: var(--bs-dark);
+}
+/* ----------  S T A R T - L O A D I N G - S T Y L E ---------- */
+
+body.clear-loading-page::-webkit-scrollbar {
+    width: 0.9rem;
+}
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 55;
+    transition: 0.5s;
+}
+.loading .fa-spinner {
+    animation: color-spinner 10s linear infinite alternate-reverse;
+}
+.loading.clear-loading {
+    animation: hide-page 1s linear 1 forwards;
+}
+@keyframes color-spinner {
+    0% {
+        transform: rotate(0);
+        color: var(--bs-dark);
+    }
+    50% {
+        transform: rotate(180deg);
+        color: var(--bs-primary);
+    }
+    100% {
+        transform: rotate(2500deg);
+        color: var(--bs-red);
+    }
+}
+/* Animation To Hide Loading page */
+@keyframes hide-page {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        z-index: -1;
+        opacity: 0;
+    }
+}
+/* ----------  E N D - L O A D I N G - S T Y L E ---------- */
+
+/* ----------  S T A R T - N A V B A R - S T Y L E ---------- */
+.navbar .navbar-brand p {
+    font-size: 0.7rem;
+}
+.navbar .navbar-nav .nav-item {
+    position: relative;
+    font-size: 1.2rem;
+    padding-inline: 0.5rem;
+}
+.navbar .navbar-nav .nav-item a {
+    position: relative;
+    width: fit-content;
+}
+
+.navbar .navbar-nav .nav-item a::before {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: rgba(var(--bs-white-rgb), 0.75);
+    position: absolute;
+    bottom: 3px;
+    transition: var(--main-transition);
+}
+.navbar .navbar-nav .nav-item a:where(:hover, .active)::before {
+    width: 70%;
+}
+/* ----------  E N D - N A V B A R - S T Y L E ---------- */
+
+/* ----------  S  T  A  R  T  -  H  E  A  D  E  R  -  S  T  Y  L  E  ---------- */
+/* ----------   |=> I N P U T - S E A R C H  <=|  ---------- */
+header .input-group.is-invalid {
+    border: 1px solid var(--bs-red);
+    box-shadow: 0 0 0.3rem 0.125rem var(--bs-red);
+}
+header .search-input {
+    background: url("../IMGs/banner.png") no-repeat;
+    min-height: 20rem;
+}
+header .search-input .input-group.focus {
+    box-shadow: 0 0 0.5rem 0.25rem var(--bs-gray-dark);
+}
+/* ----------   |=> I N P U T - S E A R C H  <=|  ---------- */
+
+header .btn-reload {
+    transition: 0.3s;
+    opacity: 0.5;
+}
+header .btn-reload:hover {
+    opacity: 1;
+}
+
+/* ----------       W E A T H E R - C O N T A I N E R  ---------- */
+header .weather-row > div:nth-child(2n + 1) {
+    background-color: #323544;
+}
+header .weather-row > div:nth-child(2n) {
+    background-color: #262936;
+}
+header .forecast-num p:first-child {
+    transform: translateX(-15px);
+}
+header .forecast-num p:last-child {
+    transform: translateX(-5px);
+}
+header .day_forecast_num {
+    width: fit-content;
+}
+header #current_day_forecast_num {
+    font-size: 4.5rem;
+}
+header .day_forecast_num {
+    font-size: 3rem;
+}
+header .day_forecast_num::before {
+    content: "o";
+    font-size: 0.5em;
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
+}
+header .day_forecast_num::after {
+    content: "C";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(150%, -50%);
+    font-size: 0.8em;
+}
+header .forecast-char {
+    font-size: 1.2rem;
+    font-weight: lighter;
+    gap: 15px;
+}
+.condition-icon {
+    width: 6rem;
+    transform: rotate(-30deg);
+}
+/* ----------       W E A T H E R - C O N T A I N E R  ---------- */
+/* ----------  E  N  D  -  H  E  A  D  E  R  -  S  T  Y  L  E  ---------- */
+
+/* ---------- S T A R T - F O O T E R - S T Y L E  ---------- */
+footer {
+    background-color: #323544;
+}
+footer .icon {
+    width: 3rem;
+    height: 3rem;
+    transition: var(--main-transition);
+}
+footer .icon:hover {
+    background-color: var(--bs-primary) !important;
+}
+footer .icon:hover svg {
+    color: var(--bs-dark);
+}
+/* ---------- E N D - F O O T E R - S T Y L E  ---------- */
+
+/* ---------- S T A R T - H T M L - F O N T - S I Z E - R E S P O N S I V E  ---------- */
+@media screen and (max-width: 1199px) {
+    html {
+        font-size: 14px !important;
+    }
+    .forecast-char {
+        justify-content: space-around;
+        gap: 0;
+    }
+}
+@media screen and (max-width: 992px) {
+    html {
+        font-size: 13px !important;
+    }
+    .forecast-char {
+        justify-content: start;
+        gap: 15px;
+    }
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 12px !important;
+    }
+    #current_day_forecast_num {
+        transform: translateX(-30px);
+    }
+    .forecast-char {
+        justify-content: center;
+        gap: 15px;
+    }
+}
+@media screen and (max-width: 575px) {
+    html {
+        font-size: 10px !important;
+    }
+}
+/* ---------- E N D - H T M L - F O N T - S I Z E - R E S P O N S I V E  ---------- */

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font MerriWeather -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="CSS/all.min.css" />
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="CSS/bootstrap.min.css" />
+
+  <!-- Main Style -->
+  <link rel="stylesheet" href="./CSS/main.css" />
+
+  <!-- Title -->
+  <title>Weather</title>
+</head>
+
+<body>
+
+  <!-- Loading Page -->
+  <div class="loading d-flex-center flex-column gap-5 bg-white">
+    <i class="fa-solid fa-spinner fa-3x"></i>
+    <p class="text-capitalize text-dark"><span class="text-uppercase text-secondary fw-bold fs-5">Waiting!!...</span> Your Data is loading</p>
+  </div>
+  <!-- Loading Page -->
+  <!-- |- S T A R T - N A V B A R - S E C T I O N -| -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center gap-3 gap-lg-4" href="#">
+        <img src="./IMGs/logo.png" class="w-100" alt="Logo Img">
+        <div class="logo-content d-flex flex-column align-items-center">
+          <h1 class="text-uppercase fs-4 fw-bold mb-0">Weather</h1>
+          <p class="text-gray mb-0">
+            tagline goes here
+          </p>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mt-3 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Live Cameras</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Photo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--    |- E N D - N A V B A R - S E C T I O N -| -->
+
+  <!-- |- S T A R T - H E A D E R - S E C T I O N  -| -->
+  <header class="bg-dark min-vh-75">
+    <div class="search-input py-6">
+      <div class="container">
+
+        <!-- |= S T A R T - I N P U T - S E C T I O N  =| -->
+        <div class="input-group bg-dark rounded-pill ps-4 pe-2 py-2 mb-6">
+          <input type="text" id="input_search"
+            class="form-control text-primary fs-5 border-0 shadow-none bg-transparent "
+            placeholder="Find Your Location..." aria-label="Recipient's username" aria-describedby="button-addon2">
+          <button class="btn btn-primary fs-5 rounded-pill border-0 py-2 px-5" type="button"
+            id="btn_search">Find</button>
+        </div>
+        <!-- => Input Alert -->
+        <!-- <div class="bg-dark bg-opacity-75 p-3 mt-2 rounded-3">
+          <p class="text-gray mb-0">City You Are Searching About <span class="text-primary fw-bold">Doesn't Exist</span></p>
+        </div> -->
+        <!-- => Input Alert -->
+        <!-- |= E N D - I N P U T - S E C T I O N  =| -->
+
+        <!-- |= S T A R T - L A S T - U P D A T E  =| -->
+        <div class="last-update d-flex align-items-center gap-2 mb-3 bg-dark rounded-3 bg-opacity-75 px-3 py-3 d-none">
+          <p class="mb-0 text-gray">Last Update :</p>
+          <span id="last_update" class="text-primary"></span>
+          <button class="btn-reload bg-transparent border-0 p-0" id="btn_refresh">
+            <i class="fa-solid fa-rotate-right text-gray"></i>
+          </button>
+        </div>
+        <!-- |= S T A R T - L A S T - U P D A T E  =| -->
+
+        <!-- |= S T A R T - W E A T H E R - D A Y - S E C T I O N  =| -->
+        <div class="container">
+          <div
+            class="weather-row row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center rounded-3 overflow-hidden">
+
+            <!-- |=> S T A R T - C U R R E N T - D A Y  <=| -->
+            <div class="p-0">
+              <div class="inner">
+                <!-- |-> Date Section <-| -->
+                <div class="date-sec text-gray d-flex justify-content-between p-3 bg-black bg-opacity-10">
+                  <p id="current_day_date" class="mb-0"></p>
+                  <p class="mb-0" id="current_dayMonth_date"></p>
+                </div>
+                <!-- |-> Date Section <-| -->
+
+                <!-- |-> body <-| -->
+                <div class="py-5 px-4">
+
+                  <p id="location_element" class="text-gray text-center text-md-start fs-4"></p>
+
+                  <!-- |> Forecast Degree <| -->
+                  <p class="day_forecast_num text-white fw-bolder position-relative mx-auto mx-md-0"
+                    id="current_day_forecast_num">
+                  </p>
+                  <!-- |> Forecast Degree <| -->
+
+                  <!-- |> Forecast condition <| -->
+                  <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+                    <p id="current_forecast_condition" class="text-primary fs-4 text-center text-md-start mb-0"></p>
+                    <img src="" class="condition-icon " id="current_forecast_icon"></img>
+                  </div>
+
+                  <!-- |> Forecast condition <| -->
+
+                  <!-- |> Forecast Characteristics <| -->
+                  <div
+                    class="forecast-char d-flex align-items-center text-gray">
+
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-cloud text-gray"></i>
+                      <p id="cloud_percent" class="mb-0"></p>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-wind"></i>
+                      <p id="wind_deg" class="mb-0"></p>
+                    </div>
+
+                    <!-- Wind Direction -->
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-compass"></i>
+                      <p id="wind_direction" class="mb-0"></p>
+                    </div>
+
+                  </div>
+                  <!-- |> Forecast Characteristics <| -->
+                </div>
+              </div>
+            </div>
+            <!-- |=> E N D - C U R R E N T - D A Y  <=| -->
+
+            <!-- |=> S T A R T - N E X T - D A Y  <=| -->
+            <div class="p-0">
+              <div class="inner">
+                <!-- |-> Date Section <-| -->
+                <div
+                  class="date-sec text-gray d-flex justify-content-center align-items-center p-3 bg-black bg-opacity-10">
+                  <p id="next_day_date" class="mb-0"></p>
+                </div>
+                <!-- |-> Date Section <-| -->
+
+                <!-- |-> body <-| -->
+                <div class="py-3 px-4">
+
+                  <!-- Weather Condition Icon -->
+                  <div class="d-flex justify-content-center">
+                    <img src="" class="condition-icon" id="next_forecast_icon">
+                  </div>
+                  <!-- |> Forecast Degree <| -->
+                  <div class="forecast-num">
+                    <p class="day_forecast_num mx-auto text-white fw-bolder position-relative"
+                      id="next_day_forecast_high"> </p>
+                    <!-- Lower -->
+                    <p id="next_day_forecast_low" class="day_forecast_num fs-5 text-gray mx-auto position-relative"></p>
+                  </div>
+                  <!-- |> Forecast Degree <| -->
+
+                  <!-- |> Forecast condition <| -->
+                  <p id="next_forecast_condition" class="text-primary text-center fs-4"></p>
+                  <!-- |> Forecast condition <| -->
+                </div>
+              </div>
+            </div>
+            <!-- |=> E N D - N E X T - D A Y  <=| -->
+
+            <!-- |=> S T A R T - N E X T * 2 - D A Y  <=| -->
+            <div class="p-0">
+              <div class="inner">
+                <!-- |-> Date Section <-| -->
+                <div
+                  class="date-sec text-gray d-flex justify-content-center align-items-center p-3 bg-black bg-opacity-10">
+                  <p id="next_2_day_date" class="mb-0"></p>
+                </div>
+                <!-- |-> Date Section <-| -->
+
+                <!-- |-> body <-| -->
+                <div class="py-3 px-4">
+
+                  <div class="d-flex justify-content-center">
+                    <img src="" class="condition-icon" id="next_2_forecast_icon">
+                  </div>
+
+                  <!-- |> Forecast Degree <| -->
+                  <div class="forecast-num">
+                    <p class="day_forecast_num mx-auto text-white fw-bolder position-relative"
+                      id="next_2_day_forecast_high"></p>
+                    <!-- Lower -->
+                    <p id="next_2_day_forecast_low" class="fs-5 day_forecast_num text-gray mx-auto position-relative">
+                    </p>
+                  </div>
+                  <!-- |> Forecast Degree <| -->
+
+                  <!-- |> Forecast condition <| -->
+                  <p id="next_2_forecast_condition" class="text-primary text-center fs-4"></p>
+                  <!-- |> Forecast condition <| -->
+                </div>
+              </div>
+            </div>
+            <!-- |=> E N D - N E X T * 2 - D A Y  <=| -->
+
+          </div>
+        </div>
+        <!-- |= E N D - W E A T H E R - D A Y - S E C T I O N  =| -->
+
+      </div>
+    </div>
+  </header>
+  <!--    |- E N D - H E A D E R - S E C T I O N  -| -->
+
+  <footer class="pt-6">
+    <div class="container">
+      <div class="row align-items-center justify-content-between gy-4 gy-md-0 gx-0 gx-md-4">
+
+        <!-- |= S T A R T - S U B S C R I B E =| -->
+        <div class="col-md-8">
+          <div class="input-group bg-dark rounded-pill ps-4 pe-2 py-2">
+            <input type="text" id="input_subscribe"
+              class="form-control text-primary fs-5 border-0 shadow-none bg-transparent "
+              placeholder="Enter Your Email To Subscribe..." aria-label="Recipient's username"
+              aria-describedby="button-addon2">
+            <button class="btn btn-primary fs-5 rounded-pill border-0 py-3 px-4" type="button"
+              id="btn_subscribe">Subscribe</button>
+          </div>
+        </div>
+        <!-- |= E N D - S U B S C R I B E =| -->
+
+        <!-- |= S T A R T - S O C I A L - L I N K S =| -->
+        <div class="col-md-4">
+          <div class="inner d-flex justify-content-center gap-2">
+            <a href="#" class="icon bg-dark d-flex-center rounded-circle">
+              <i class="fa fa-brands fs-5 fa-facebook-f"></i>
+            </a>
+            <a href="#" class="icon bg-dark d-flex-center rounded-circle">
+              <i class="fa fa-brands fs-5 fa-twitter"></i>
+            </a>
+            <a href="#" class="icon bg-dark d-flex-center rounded-circle">
+              <i class="fa fa-brands fs-5 fa-google-plus-g"></i>
+            </a>
+            <a href="#" class="icon bg-dark d-flex-center rounded-circle">
+              <i class="fa fa-brands fs-5 fa-pinterest-p"></i>
+            </a>
+          </div>
+        </div>
+        <!-- |= E N D - S O C I A L - L I N K S =| -->
+
+        <!-- Copy Right -->
+        <p class="text-gray text-center my-5">Copyright <span id="copy_right">2022</span> <a href="#"
+            class="fw-bold text-primary">Weather</a>. Designed by Mostafa Khashaba. All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Font Awesome Js -->
+  <script src="./JS/all.min.js"></script>
+
+  <!-- Bootstrap Js -->
+  <script src="./JS/bootstrap.bundle.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="./JS/main.js"></script>
+</body>
+
+</html>
