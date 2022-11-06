@@ -136,12 +136,12 @@ async function checkCity(city) {
     // get if there city With Thats chars 
     //      if not found return []
     //          else return Not Empty Array
-    let res = await fetch(`https://api.weatherapi.com/v1/search.json?key=8a148a00e2f14425af8202503221010&q=${city}`);
+    let res = await fetch(`https://api.weatherapi.com/v1/search.json?key=12bf7c9aa3584a07aa265651220611&q=${city}`);
     return await res.json();
 }
 // 
 async function getData(city) {
-    let resp = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=8a148a00e2f14425af8202503221010&q=${city}&days=3&aqi=yes&alerts=no
+    let resp = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=12bf7c9aa3584a07aa265651220611&q=${city}&days=3&aqi=yes&alerts=no
     `);
 
     return await resp.json()
